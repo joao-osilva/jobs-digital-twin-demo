@@ -1,4 +1,6 @@
-import { Github, Twitter, Mail, MessageCircle } from 'lucide-react';
+import { MdEmail } from "react-icons/md";
+import { FaYoutube, FaXTwitter } from "react-icons/fa6";
+import { FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -8,17 +10,35 @@ export default function Footer() {
           <h3 className="text-xl font-light text-white">Join the Vision</h3>
 
           <div className="flex space-x-8">
-            <a href="https://github.com" className="text-gray-400 hover:text-white transition-colors">
-              <Github className="w-6 h-6" />
+            <a 
+              href="https://tiktok.com/@stevejobsai" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <FaTiktok className="w-6 h-6" />
             </a>
-            <a href="https://twitter.com" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter className="w-6 h-6" />
+            <a 
+              href="https://twitter.com/stevejobsai" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <FaXTwitter className="w-6 h-6" />
             </a>
-            <a href="mailto:contact@example.com" className="text-gray-400 hover:text-white transition-colors">
-              <Mail className="w-6 h-6" />
+            <a 
+              href="mailto:contact@stevejobsai.com" 
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <MdEmail className="w-6 h-6" />
             </a>
-            <a href="https://discord.com" className="text-gray-400 hover:text-white transition-colors">
-              <MessageCircle className="w-6 h-6" />
+            <a 
+              href="https://youtube.com/@stevejobsai" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <FaYoutube className="w-6 h-6" />
             </a>
           </div>
 

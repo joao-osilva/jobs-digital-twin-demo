@@ -22,11 +22,15 @@ export async function GET() {
     const participantIdentity = `voice_assistant_user_${Math.round(
       Math.random() * 10_000
     )}`;
+    
+    const roomName = `voice_assistant_room_${Math.round(
+      Math.random() * 10_000
+    )}`;
     const participantToken = await createParticipantToken(
       {
         identity: participantIdentity,
       },
-      "roomName"
+      roomName
     );
 
     if (LIVEKIT_URL === undefined) {
@@ -36,7 +40,7 @@ export async function GET() {
     // Return connection details
     const data: ConnectionDetails = {
       serverUrl: LIVEKIT_URL,
-      roomName: "voice_assistant_room",
+      roomName: roomName,
       participantToken: participantToken,
       participantName: participantIdentity,
     };
@@ -44,7 +48,6 @@ export async function GET() {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-
       return new NextResponse(error.message, { status: 500 });
     }
   }

@@ -1,10 +1,10 @@
 "use client";
 
-import { LiveKitRoom, useVoiceAssistant, BarVisualizer, RoomAudioRenderer, VoiceAssistantControlBar, DisconnectButton } from "@livekit/components-react";
+import { LiveKitRoom, useVoiceAssistant, RoomAudioRenderer, DisconnectButton } from "@livekit/components-react";
 import { useCallback, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { Mic, X as CloseIcon } from "lucide-react";
 import Footer from "@/components/Footer";
-import { Mic, Send, Pause, X as CloseIcon } from "lucide-react";
 
 export default function Page() {
   const [connectionDetails, updateConnectionDetails] = useState(undefined);
@@ -141,10 +141,10 @@ export default function Page() {
                 "Establishing connection..."
               )}
               {agentState === "connected" && (
-                "Connected. You can start talking"
+                "Connected. Wait for Steve to respond..."
               )}
               {agentState === "speaking" && (
-                "Steve is sharing his insights"
+                "Steve is sharing his thoughts"
               )}
               {agentState === "listening" && (
                 "Listening to your question..."
@@ -241,11 +241,6 @@ function SimpleVoiceAssistant({ onStateChange }) {
 }
 
 function ControlBar({ onConnectButtonClicked, agentState, updateConnectionDetails, setAgentState }) {
-  const handleDisconnect = () => {
-    updateConnectionDetails(undefined);
-    setAgentState("disconnected");
-  };
-
   return (
     <div className="relative h-[100px] flex items-center justify-center">
       {agentState === "disconnected" && (
@@ -264,18 +259,19 @@ function ControlBar({ onConnectButtonClicked, agentState, updateConnectionDetail
       )}
 
       {agentState !== "disconnected" && (
-        <motion.button 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="bg-[#ff3b30] hover:bg-[#ff453a] 
-            text-white px-8 py-3 rounded-full transition-colors
-            flex items-center gap-2"
-          onClick={handleDisconnect}
-        >
-          <CloseIcon className="w-5 h-5" />
-          End conversation
-        </motion.button>
+        <DisconnectButton>
+          <motion.button 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="bg-[#ff3b30] hover:bg-[#ff453a] 
+              text-white px-8 py-3 rounded-full transition-colors
+              flex items-center gap-2"
+          >
+            <CloseIcon className="w-5 h-5" />
+            End conversation
+          </motion.button>
+        </DisconnectButton>
       )}
     </div>
   );
